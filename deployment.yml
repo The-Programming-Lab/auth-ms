@@ -41,6 +41,15 @@ spec:
             cpu: 100m
           limits:
             cpu: 100m
+        env:
+          - name: APP_ENV
+            value: production
+          - name: HEALTH_CHECK_ENDPOINT
+            value: HEALTH_CHECK_ENDPOINT_VALUE
+          - name: BASE_PATH
+            value: BASE_PATH_VALUE
+          - name: HELLO_WORLD
+            value: HELLO_WORLD_VALUE
 
 
 

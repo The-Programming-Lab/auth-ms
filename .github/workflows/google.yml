@@ -67,10 +67,6 @@ jobs:
           --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
-          --build-arg APP_ENV="production" \
-          --build-arg HEALTH_CHECK_ENDPOINT="${{ secrets.HEALTH_CHECK_ENDPOINT }}" \
-          --build-arg BASE_PATH="${{ secrets.BASE_PATH }}" \
-          --build-arg HELLO_WORLD="${{ secrets.HELLO_WORLD }}" \
           .
     # Push the Docker image to Google Artifact Registry
     - name: Publish
@@ -93,6 +89,9 @@ jobs:
         sed -i "s|BACKEND_CONFIG_STRING|${{secrets.BACKEND_CONFIG_STRING}}|g" service.yml
         sed -i "s|DEPLOYMENT_NAME|$DEPLOYMENT_NAME|g" backendconfig.yml
         sed -i "s|HEALTH_CHECK_ENDPOINT|${{secrets.HEALTH_CHECK_ENDPOINT}}|g" backendconfig.yml
+        sed -i "s|HEALTH_CHECK_ENDPOINT_VALUE|${{ secrets.HEALTH_CHECK_ENDPOINT }}|g" deployment.yml
+        sed -i "s|BASE_PATH_VALUE|${{ secrets.BASE_PATH }}|g" deployment.yml
+        sed -i "s|HELLO_WORLD_VALUE|${{ secrets.HELLO_WORLD }}|g" deployment.yml
         # replacing the image name in the k8s template
         ./kustomize edit set image image-url=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
         ./kustomize build . | kubectl apply -f -
