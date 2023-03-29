@@ -1,11 +1,6 @@
 from fastapi import FastAPI
 from app.api.endpoints import example
 from app.api.config import health_check_endpoint
-import os 
-
-
-
-
 
 app = FastAPI()
 
