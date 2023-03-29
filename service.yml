@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: SERVICE_NAME
+  annotations:
+    cloud.google.com/backend-config: '{"default": "DEPLOYMENT_NAME"}'
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: PORT_NUMBER
+  selector:
+    app: DEPLOYMENT_NAME
