@@ -83,13 +83,13 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
-        sed -i "s/DEPLOYMENT_NAME/$DEPLOYMENT_NAME/g" deployment.yml
-        sed -i "s/PORT_NUMBER/$PORT_NUMBER/g" deployment.yml
-        sed -i "s/DEPLOYMENT_NAME/$DEPLOYMENT_NAME/g" service.yml
-        sed -i "s/PORT_NUMBER/$PORT_NUMBER/g" service.yml
-        sed -i "s/SERVICE_NAME/${{secrets.SERVICE_NAME}} /g" service.yml
-        sed -i "s/DEPLOYMENT_NAME/$DEPLOYMENT_NAME /g" backendconfig.yml
-        sed -i "s/HEALTH_CHECK_ENDPOINT/${{secrets.HEALTH_CHECK_ENDPOINT}} /g" backendconfig.yml
+        sed -i "s|DEPLOYMENT_NAME|$DEPLOYMENT_NAME|g" deployment.yml
+        sed -i "s|PORT_NUMBER|$PORT_NUMBER|g" deployment.yml
+        sed -i "s|DEPLOYMENT_NAME|$DEPLOYMENT_NAME|g" service.yml
+        sed -i "s|PORT_NUMBER|$PORT_NUMBER|g" service.yml
+        sed -i "s|SERVICE_NAME|${{secrets.SERVICE_NAME}}|g" service.yml
+        sed -i "s|DEPLOYMENT_NAME|$DEPLOYMENT_NAME|g" backendconfig.yml
+        sed -i "s|HEALTH_CHECK_ENDPOINT|${{secrets.HEALTH_CHECK_ENDPOINT}}|g" backendconfig.yml
         # replacing the image name in the k8s template
         ./kustomize edit set image image-url=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
         ./kustomize build . | kubectl apply -f -
