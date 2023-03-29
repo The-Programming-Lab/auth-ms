@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: SERVICE_NAME
   annotations:
-    cloud.google.com/backend-config: '{"default": "DEPLOYMENT_NAME"}'
+    cloud.google.com/backend-config: BACKEND_CONFIG_STRING
 spec:
   type: ClusterIP
   ports:
