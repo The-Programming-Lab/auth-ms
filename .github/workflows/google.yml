@@ -88,6 +88,7 @@ jobs:
         sed -i "s|DEPLOYMENT_NAME|$DEPLOYMENT_NAME|g" service.yml
         sed -i "s|PORT_NUMBER|$PORT_NUMBER|g" service.yml
         sed -i "s|SERVICE_NAME|${{secrets.SERVICE_NAME}}|g" service.yml
+        sed -i "s|BACKEND_CONFIG_STRING|${{secrets.BACKEND_CONFIG_STRING}}|g" service.yml
         sed -i "s|DEPLOYMENT_NAME|$DEPLOYMENT_NAME|g" backendconfig.yml
         sed -i "s|HEALTH_CHECK_ENDPOINT|${{secrets.HEALTH_CHECK_ENDPOINT}}|g" backendconfig.yml
         # replacing the image name in the k8s template
