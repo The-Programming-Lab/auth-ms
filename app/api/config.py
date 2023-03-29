@@ -1,6 +1,11 @@
 import os
 from dotenv import load_dotenv
 
+try:
+    print(os.environ['APP_ENV'])
+except:
+    print('APP_ENV not found\n\n\n\n')
+
 
 if "APP_ENV" in os.environ and os.environ['APP_ENV'] == 'production':
     try:

@@ -68,6 +68,7 @@ jobs:
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           --build-arg APP_ENV="production" \
+          # ADD all env variables to secrets:
           --build-arg HEALTH_CHECK_ENDPOINT="${{ secrets.HEALTH_CHECK_ENDPOINT }}" \
           --build-arg BASE_PATH="${{ secrets.BASE_PATH }}" \
           --build-arg HELLO_WORLD="${{ secrets.HELLO_WORLD }}" \
