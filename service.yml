@@ -7,7 +7,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: PORT_NUMBER
   selector:
     app: DEPLOYMENT_NAME
