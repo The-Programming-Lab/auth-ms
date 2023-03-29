@@ -4,6 +4,7 @@
 # GKE_SA_EMAIL: the service account email address
 # GKE_WORKLOAD_IDENTITY_PROVIDER: the workload identity provider
 # HEALTH_CHECK_ENDPOINT: example "/health-check"
+# SERVICE_NAME: example "hello-service"
 
 # ADD all env variables to secrets:
 # HEALTH_CHECK_ENDPOINT (already above)
