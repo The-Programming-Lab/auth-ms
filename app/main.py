@@ -1,14 +1,15 @@
 from fastapi import FastAPI
-from app.api.endpoints import example
-from app.api.config import health_check_endpoint
 
-app = FastAPI()
+from app.api.v1.router import router
+from app.core.config import BASE_PATH
+
+
+app = FastAPI(docs_url=BASE_PATH + "/docs", openapi_url=BASE_PATH + "/openapi.json")
 
 # add router from api/endpoints/example.py
-app.include_router(example.router)
+app.include_router(router)
 
 
-
-@app.get(health_check_endpoint)
-async def test():
-    return "Ok"
+@app.get("/")
+async def health_check():
+    return "ok" 

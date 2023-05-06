@@ -1,26 +1,12 @@
-# Copyright 2021 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: DEPLOYMENT_NAME
+  name: auth-ms
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: DEPLOYMENT_NAME
+      app: auth-ms
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -29,27 +15,18 @@ spec:
   template:
     metadata:
       labels:
-        app: DEPLOYMENT_NAME
+        app: auth-ms
     spec:
       containers:
-      - name: DEPLOYMENT_NAME
+      - name: auth-ms
         image: image-url
         ports:
-        - containerPort: PORT_NUMBER
+        - containerPort: 8000
         resources:
           requests:
             cpu: 100m
           limits:
             cpu: 100m
-        env:
-          - name: APP_ENV
-            value: production
-          - name: HEALTH_CHECK_ENDPOINT
-            value: HEALTH_CHECK_ENDPOINT_VALUE
-          - name: BASE_PATH
-            value: BASE_PATH_VALUE
-          - name: HELLO_WORLD
-            value: HELLO_WORLD_VALUE
 
 
 

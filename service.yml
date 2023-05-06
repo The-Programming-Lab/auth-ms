@@ -1,14 +1,30 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: auth-ms
+spec:
+  timeoutSec: 120
+  connectionDraining:
+    drainingTimeoutSec: 300
+  healthCheck:
+    checkIntervalSec: 10
+    timeoutSec: 5
+    unhealthyThreshold: 3
+    healthyThreshold: 2
+    type: HTTP
+    requestPath: /
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: SERVICE_NAME
+  name: auth-ms
   annotations:
-    cloud.google.com/backend-config: BACKEND_CONFIG_STRING
+    cloud.google.com/backend-config: '{"ports": {"http":"auth-ms"}}'
 spec:
   type: ClusterIP
   ports:
     - name: http
       port: 80
-      targetPort: PORT_NUMBER
+      targetPort: 8000
   selector:
-    app: DEPLOYMENT_NAME
+    app: auth-ms
