@@ -13,3 +13,7 @@ app.include_router(router)
 @app.get("/")
 async def health_check():
     return "ok" 
+
+@app.get("/v1/auth")
+async def auth():
+    return BASE_PATH
