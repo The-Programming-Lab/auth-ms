@@ -57,6 +57,7 @@ jobs:
     - name: Set up environment variables
       run: |
         echo "${{ secrets.ENV_FILE }}" > .env
+        echo "${{ secrets.GOOGLE_KEY_PATH_BASE64 }}" | base64 --decode > auth-ms.json
 
     # Build the Docker image
     - name: Build
